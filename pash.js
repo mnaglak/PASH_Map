@@ -35,6 +35,18 @@ return  era == "Neolithic"  ? '#880808' :
                         '#252525';
 }
 
+function lineStyle(feature) {
+return{color:'#00008b'}
+};
+
+function lakeStyle(feature) {
+  switch (feature.properties.Shape_Area) {
+    case '989181106.13300001621': return {color: "#ADD8E6"};
+    case '1432209104.69000005722' : return {color: "#C4A484"};
+    case '694464302.17200005054' : return {color: "#008D97"};
+  }
+
+};
 
   var allsites =  L.geoJSON(sites, {
       onEachFeature:popUp,
@@ -54,6 +66,25 @@ return  era == "Neolithic"  ? '#880808' :
       return (feature.properties.era == 'Neolithic');
     }
   }).addTo(map);
+
+  var currentlake = L.geoJSON(modernLake, {
+    style: {color: "#000000", fillColor: "#0000ff", weight: 1}, //blue
+  }).addTo(map);
+
+  var river = L.geoJSON(braidedRiver, {
+    style: {color:'#00008b'},
+  }
+
+  ).addTo(map);
+
+  var swamp = L.geoJSON(swampMarsh, {
+    style: {color: "#000000", fillcolor: "green", weight: 1},
+  }).addTo(map);
+
+  var medLake = L.geoJSON(med_Lake, {
+    style: {color: "#000000", fillcolor: "blue", weight: 1},
+  }).addTo(map);
+
 
   const legend = L.control.Legend({
   				position: "bottomright",
