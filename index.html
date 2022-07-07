@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Prehistoric Sites in PASH Study Area Through Time</title>
+  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+
+  <!-- Load Leaflet stylesheet and .js locally -->
+	<link rel="stylesheet" href="leaflet1_5_1/leaflet.css"/>
+	<script src="leaflet1_5_1/leaflet.js"></script>
+
+  <!-- Load plugins locally
+	measure-master for measuring, search-master for searching-->
+	<link rel="stylesheet" href="Leaflet.Pancontrol/src/L.Control.Pan.css" />
+	<script src="Leaflet.Pancontrol/src/L.Control.Pan.js"></script>
+
+	<script type="text/javascript" src="Leaflet.markercluster-1.4.1/dist/leaflet.markercluster-src.js"></script>
+	<link rel="stylesheet" href="./Leaflet.markercluster-1.4.1/dist/MarkerCluster.css" />
+	<link rel="stylesheet" href="./Leaflet.markercluster-1.4.1/dist/MarkerCluster.Default.css" />
+
+	<link rel="stylesheet" href="./leaflet-search-master/src/leaflet-search.css" />
+	<script src="./leaflet-search-master/src/leaflet-search.js"></script>
+
+  <link rel="stylesheet" href="./Leaflet.Legend/src/leaflet.legend.css" />
+  <script type="text/javascript" src="./Leaflet.Legend/src/leaflet.legend.js"></script>
+
+  <link rel="stylesheet" href="./noUiSlider/distribute/nouislider.min.css" />
+	<script src="./noUiSlider/distribute/nouislider.min.js"></script>
+  <script type="text/javascript" src="jquery.min.js"></script>
+  <script type="text/javascript" src="allSites.js"></script>
+
+
+<style>
+
+  #overlay {position: absolute; width: 40%; height: 5%; top:10px; left:30%; background-color: rgba(0,0,0,0.5); z-index: 800; color:white; text-align:center; font-size:22px;
+  }
+
+  #sliderunderlay {position: absolute; width: 50%; height: 50px; bottom:40px; left: 20%; z-index: 800; background-color:white; opacity:.8}
+  #slider {width:80%; left:10%; top: 25%;}
+
+
+/* CSS */
+#seeAllSites {
+  position: absolute;
+width: 7%;
+z-index:800;
+height:30px;
+top:210px;
+left:10px;
+  appearance: none;
+  background-color: #FAFBFC;
+  border: 1px solid rgba(27, 31, 35, 0.15);
+  border-radius: 6px;
+  box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+  box-sizing: border-box;
+  color: #24292E;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  list-style: none;
+
+  position: relative;
+  transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  white-space: nowrap;
+  word-wrap: break-word;
+}
+
+#seeAllSites:hover {
+  background-color: #F3F4F6;
+  text-decoration: none;
+  transition-duration: 0.1s;
+}
+
+</style>
+
+</head>
+
+<body>
+	<!-- create map object and call map .js file -->
+<div id = "map" style = "width:100%; height:600px;">
+  <div id = "overlay">Prehistoric Sites in PASH Study Area Through Time</div>
+  <button id = "seeAllSites" onclick="turnOnAllSites()" >See All Sites</button>
+  <div id = "sliderunderlay">
+    <div id="slider"></div>
+  </div>
+</div>
+
+  <script type="text/javascript" src="pash.js"></script>
+
+
+
+</body>
+</html>
