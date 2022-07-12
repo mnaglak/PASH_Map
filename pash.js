@@ -50,6 +50,14 @@ function lakeStyle(feature) {
 
 };
 
+var river = L.geoJSON(braidedRiver, {
+  style: {color:'#00008b'},
+});
+
+var swamp = L.geoJSON(swampMarsh, {
+  style: {color: "#000000", fillColor: "blue", weight: 1},
+}).addTo(map);
+
   var allsites =  L.geoJSON(sites, {
       onEachFeature:popUp,
       pointToLayer: function (feature, latlng) {
@@ -70,13 +78,7 @@ function lakeStyle(feature) {
   }).addTo(map);
 
 
-  var river = L.geoJSON(braidedRiver, {
-    style: {color:'#00008b'},
-  });
 
-  var swamp = L.geoJSON(swampMarsh, {
-    style: {color: "#000000", fillColor: "blue", weight: 1},
-  }).addTo(map);
 
   /*var medLake = L.geoJSON(med_Lake, {
     style: {color: "#000000", fillcolor: "blue", weight: 1},
