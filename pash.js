@@ -28,6 +28,7 @@ function popUp(f,l) {
 
 function getColor(era) {
 return  era == "Neolithic"  ? '#880808' :
+        era == "Eneolithic" ? '#BF40BF' :
         era == "Early Bronze Age"  ? '#969696' :
         era == "Middle Bronze Age"  ? '#081d58' :
         era == "Late Bronze Age"  ? '#006837' :
@@ -96,7 +97,11 @@ function lakeStyle(feature) {
   						label: "Neolithic",
   						type: "circle",
               fillColor: "#880808"
-  				}, {
+  				},  {
+              label: "Eneolithic",
+              type: "circle",
+              fillColor: "#BF40BF"
+          }, {
   						label: "Early Bronze Age",
   						type: "circle",
   						fillColor: "#969696"
@@ -122,13 +127,13 @@ function lakeStyle(feature) {
       		step:1,
           range: {
               'min': [0],
-              'max': [4]
+              'max': [5]
           },
           tooltips:true,
           format: {
             to: function(value) {
             // Math.round and -1, so 1.00 => 0, 2.00 => 2, etc.
-            return ["Neolithic","Early Bronze Age","Middle Bronze Age","Late Bronze Age","Early Iron Age"][Math.round(value)];
+            return ["Neolithic","Eneolithic","Early Bronze Age","Middle Bronze Age","Late Bronze Age","Early Iron Age"][Math.round(value)];
           },
           from: Number
           }
