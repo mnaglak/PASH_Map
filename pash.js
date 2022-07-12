@@ -27,7 +27,7 @@ function popUp(f,l) {
 };
 
 function getColor(era) {
-return  era == "Mesolithic" ? '#000000' :
+    return  era == "Mesolithic" ? '#000000' :
         era == "Neolithic"  ? '#880808' :
         era == "Eneolithic" ? '#BF40BF' :
         era == "Early Bronze Age"  ? '#969696' :
@@ -38,7 +38,7 @@ return  era == "Mesolithic" ? '#000000' :
 }
 
 function lineStyle(feature) {
-return{color:'#00008b'}
+  return{color:'#00008b'}
 };
 
 function lakeStyle(feature) {
@@ -147,6 +147,7 @@ function lakeStyle(feature) {
       eraSlider.noUiSlider.on('change', function (values, handle) {
           eraFilter = values[handle];
           console.log(eraFilter);
+          waterFeature(eraFilter);
           map.removeLayer(allsites);
 
           allsites = new L.geoJson(sites,{
@@ -167,7 +168,6 @@ function lakeStyle(feature) {
       				return (feature.properties.era == eraFilter);
       			}
         }).addTo(map);
-          waterFeature(eraFilter);
       });
 
 function waterFeature(era) {
