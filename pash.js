@@ -27,7 +27,8 @@ function popUp(f,l) {
 };
 
 function getColor(era) {
-return  era == "Neolithic"  ? '#880808' :
+return  era == "Mesolithic" ? '#000000' :
+        era == "Neolithic"  ? '#880808' :
         era == "Eneolithic" ? '#BF40BF' :
         era == "Early Bronze Age"  ? '#969696' :
         era == "Middle Bronze Age"  ? '#081d58' :
@@ -68,24 +69,22 @@ function lakeStyle(feature) {
     }
   }).addTo(map);
 
-  var currentlake = L.geoJSON(modernLake, {
-    style: {color: "#000000", fillColor: "#0000ff", weight: 1}, //blue
-  }).addTo(map);
 
   var river = L.geoJSON(braidedRiver, {
     style: {color:'#00008b'},
-  }
-
-  ).addTo(map);
+  });
 
   var swamp = L.geoJSON(swampMarsh, {
-    style: {color: "#000000", fillcolor: "green", weight: 1},
+    style: {color: "#000000", fillColor: "blue", weight: 1},
   }).addTo(map);
 
-  var medLake = L.geoJSON(med_Lake, {
+  /*var medLake = L.geoJSON(med_Lake, {
     style: {color: "#000000", fillcolor: "blue", weight: 1},
-  }).addTo(map);
+  });
 
+  var currentlake = L.geoJSON(modernLake, {
+    style: {color: "#000000", fillColor: "#0000ff", weight: 1}, //blue
+  });*/
 
   const legend = L.control.Legend({
   				position: "bottomright",
@@ -94,6 +93,10 @@ function lakeStyle(feature) {
   				opacity: 1,
   				column: 2,
   				legends: [{
+              label: "Mesolithic",
+              type: "circle",
+              fillColor: "#000000"
+          },{
   						label: "Neolithic",
   						type: "circle",
               fillColor: "#880808"
@@ -123,17 +126,17 @@ function lakeStyle(feature) {
 
       var eraSlider = document.getElementById('slider');
       noUiSlider.create(eraSlider, {
-          start: [0],
+          start: [2],
       		step:1,
           range: {
               'min': [0],
-              'max': [5]
+              'max': [7]
           },
           tooltips:true,
           format: {
             to: function(value) {
             // Math.round and -1, so 1.00 => 0, 2.00 => 2, etc.
-            return ["Neolithic","Eneolithic","Early Bronze Age","Middle Bronze Age","Late Bronze Age","Early Iron Age"][Math.round(value)];
+            return ["Paleolithic","Mesolithic","Neolithic","Eneolithic","Early Bronze Age","Middle Bronze Age","Late Bronze Age","Early Iron Age"][Math.round(value)];
           },
           from: Number
           }
@@ -164,8 +167,19 @@ function lakeStyle(feature) {
       				return (feature.properties.era == eraFilter);
       			}
         }).addTo(map);
+          waterFeature(eraFilter);
       });
 
+function waterFeature(era) {
+  map.removeLayer(river);
+  map.removeLayer(swamp);
+  if(era == "Paleolithic") {
+    river.addTo(map);
+  }
+  if (era != "Paleolithic") {
+    swamp.addTo(map);
+  }
+}
 
 function turnOnAllSites(){
   map.removeLayer(allsites);
@@ -183,7 +197,6 @@ function turnOnAllSites(){
       return L.circleMarker(latlng, markerStyle);
     }
   }).addTo(map);
-
 }
 
 //disable panning while sliding
