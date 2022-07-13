@@ -41,22 +41,13 @@ function lineStyle(feature) {
   return{color:'#00008b'}
 };
 
-function lakeStyle(feature) {
-  switch (feature.properties.Shape_Area) {
-    case '989181106.13300001621': return {color: "#ADD8E6"};
-    case '1432209104.69000005722' : return {color: "#C4A484"};
-    case '694464302.17200005054' : return {color: "#008D97"};
-  }
-
-};
-
 var river = L.geoJSON(braidedRiver, {
-  style: {color:'#00008b'},
-});
-
-var swamp = L.geoJSON(swampMarsh, {
-  style: {color: "#000000", fillColor: "blue", weight: 1},
+  style: {color:'#ADD8E6'},
 }).addTo(map);
+
+/*var swamp = L.geoJSON(swampMarsh, {
+  style: {color: "#000000", fillColor: "blue", weight: 1},
+}).addTo(map);*/
 
   var allsites =  L.geoJSON(sites, {
       onEachFeature:popUp,
@@ -83,10 +74,10 @@ var swamp = L.geoJSON(swampMarsh, {
   /*var medLake = L.geoJSON(med_Lake, {
     style: {color: "#000000", fillcolor: "blue", weight: 1},
   });
-
-  var currentlake = L.geoJSON(modernLake, {
-    style: {color: "#000000", fillColor: "#0000ff", weight: 1}, //blue
-  });*/
+*/
+  var currentLake = L.geoJSON(modernLake, {
+    style: {color: "#000000", fillColor: "#072A6C", weight: 1, fillOpacity:1}, //blue
+  }).addTo(map);
 
   const legend = L.control.Legend({
   				position: "bottomright",
@@ -174,12 +165,15 @@ var swamp = L.geoJSON(swampMarsh, {
 
 function waterFeature(era) {
   map.removeLayer(river);
-  map.removeLayer(swamp);
+  map.removeLayer(currentLake);
   if(era == "Paleolithic") {
     river.addTo(map);
+
   }
   if (era != "Paleolithic") {
-    swamp.addTo(map);
+    river.addTo(map);
+    currentLake.addTo(map);
+
   }
 }
 
