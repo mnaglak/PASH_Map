@@ -27,13 +27,13 @@ function popUp(f,l) {
 };
 
 function getColor(era) {
-    return  era == "Mesolithic" ? '#000000' :
+    return  era == "Early Mesolithic" ? '#000000' :
         era == "Neolithic"  ? '#880808' :
         era == "Eneolithic" ? '#BF40BF' :
         era == "Early Bronze Age"  ? '#969696' :
         era == "Middle Bronze Age"  ? '#081d58' :
         era == "Late Bronze Age"  ? '#006837' :
-        era == "Early Iron Age"  ? '#fed976' :
+        era == "Iron Age"  ? '#fed976' :
                         '#252525';
 }
 
@@ -73,7 +73,7 @@ var swamp = L.geoJSON(swampMarsh, {
     },
     filter:
     function(feature, layer) {
-      return (feature.properties.era == 'Neolithic');
+      return (feature.properties.era == 'Eneolithic');
     }
   }).addTo(map);
 
@@ -95,11 +95,11 @@ var swamp = L.geoJSON(swampMarsh, {
   				opacity: 1,
   				column: 2,
   				legends: [{
-              label: "Mesolithic",
+              label: "Early Mesolithic",
               type: "circle",
               fillColor: "#000000"
           },{
-  						label: "Neolithic",
+  						label: "Late Neolithic",
   						type: "circle",
               fillColor: "#880808"
   				},  {
@@ -119,7 +119,7 @@ var swamp = L.geoJSON(swampMarsh, {
   						type: "circle",
   						fillColor: "#006837"
   				}, {
-  						label: "Early Iron Age",
+  						label: "Iron Age",
   						type: "circle",
   						fillColor: "#fed976"
   				}]
@@ -128,7 +128,7 @@ var swamp = L.geoJSON(swampMarsh, {
 
       var eraSlider = document.getElementById('slider');
       noUiSlider.create(eraSlider, {
-          start: [2],
+          start: [3],
       		step:1,
           range: {
               'min': [0],
@@ -138,7 +138,7 @@ var swamp = L.geoJSON(swampMarsh, {
           format: {
             to: function(value) {
             // Math.round and -1, so 1.00 => 0, 2.00 => 2, etc.
-            return ["Paleolithic","Mesolithic","Neolithic","Eneolithic","Early Bronze Age","Middle Bronze Age","Late Bronze Age","Early Iron Age"][Math.round(value)];
+            return ["Paleolithic","Early Mesolithic","Late Neolithic","Eneolithic","Early Bronze Age","Middle Bronze Age","Late Bronze Age","Iron Age"][Math.round(value)];
           },
           from: Number
           }
