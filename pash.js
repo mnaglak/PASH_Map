@@ -28,7 +28,7 @@ function popUp(f,l) {
 
 function getColor(era) {
     return  era == "Early Mesolithic" ? '#000000' :
-        era == "Neolithic"  ? '#880808' :
+        era == "Late Neolithic"  ? '#880808' :
         era == "Eneolithic" ? '#BF40BF' :
         era == "Early Bronze Age"  ? '#969696' :
         era == "Middle Bronze Age"  ? '#081d58' :
