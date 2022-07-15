@@ -45,11 +45,10 @@ var river = L.geoJSON(braidedRiver, {
   style: {color:'#ADD8E6'},
 }).addTo(map);
 
-
 /*var swamp = L.geoJSON(swampMarsh, {
   style: {color: "#000000", fillColor: "blue", weight: 1},
 }).addTo(map);*/
-var backgroundLake = L.geoJSON(modernLake, {style: {fillColor:"#015E57", fillOpacity:1, opacity:0}}).addTo(map);
+//var backgroundLake = L.geoJSON(modernLake, {style: {fillColor:"#015E57", fillOpacity:1, opacity:0}}).addTo(map);
 
   var allsites =  L.geoJSON(sites, {
       onEachFeature:popUp,
@@ -70,7 +69,11 @@ var backgroundLake = L.geoJSON(modernLake, {style: {fillColor:"#015E57", fillOpa
     }
   }).addTo(map);
 
-  var patternShape = new L.PatternPath({
+  var swamp = L.geoJSON(modernLake, {style: {fillColor:"#5b975b", weight:1, color:"#5b975b", fillOpacity:1}}).addTo(map);
+  var marsh = L.geoJSON(modernLake, {
+    style: {fillColor: "#987654", weight:1, color:"#987654", fillOpacity:1}, //blue
+  });
+  /* var patternShape = new L.PatternPath({
         d: "M10,10C21.805555555555557,10.416666666666666,40.97222222222223,19.916666666666664,66.66666666666667,12C92.36111111111111,4.083333333333334,105.55555555555557,-30.291666666666668,133.33333333333334,-28C161.11111111111111,-25.708333333333332,172.22222222222223,20.916666666666668,200,23C227.77777777777777,25.083333333333332,238.8888888888889,-19.25,266.6666666666667,-18C294.44444444444446,-16.75,305.5555555555556,25.666666666666668,333.33333333333337,29C361.11111111111114,32.333333333333336,372.22222222222223,-6.583333333333333,400,-2C427.77777777777777,2.583333333333333,438.8888888888889,53.5,466.6666666666667,51C494.44444444444446,48.5,505.5555555555556,-11.916666666666666,533.3333333333334,-14C561.1111111111111,-16.083333333333332,572.2222222222222,40.583333333333336,600,41C627.7777777777778,41.416666666666664,638.8888888888889,-10.333333333333334,666.6666666666667,-12C694.4444444444446,-13.666666666666666,707.6388888888889,28.416666666666668,733.3333333333334,33C759.0277777777778,37.583333333333336,778.1944444444445,14.791666666666668,790,10",
         fill: true,
         stroke: "black"
@@ -98,7 +101,7 @@ var marshPattern = new L.Pattern({width:50, height:40, patternTransform: "1,0,0,
   var marsh = L.geoJSON(modernLake, {
     style: {fillPattern: marshPattern ,  color: "#000000", weight: 1, fillOpacity:1}, //blue
   });
-
+*/
   const legend = L.control.Legend({
   				position: "bottomright",
   				collapsed: false,
@@ -135,12 +138,12 @@ var marshPattern = new L.Pattern({width:50, height:40, patternTransform: "1,0,0,
   						fillColor: "#fed976"
   				}, {
               label: "Marsh",
-              type: "image",
-              url: "marsh.png"
+              type: "rectangle",
+              fillColor: "#987654"
           }, {
             label: "Swamp",
-            type: "image",
-            url: "swamp.png"
+            type: "rectangle",
+            fillColor: "#5b975b"
 
           }]
   		})
@@ -196,24 +199,24 @@ function waterFeature(era) {
   map.removeLayer(river);
   map.removeLayer(swamp);
   map.removeLayer(marsh);
-  map.removeLayer(backgroundLake);
+  //map.removeLayer(backgroundLake);
   if(era == "Paleolithic") {
     river.addTo(map);
 
   }
   else if (era == "Early Mesolithic") {
     river.addTo(map);
-    backgroundLake.addTo(map);
+    //backgroundLake.addTo(map);
     marsh.addTo(map);
   }
   else if (era == "Late Neolithic") {
     river.addTo(map);
-    backgroundLake.addTo(map);
+    //backgroundLake.addTo(map);
     marsh.addTo(map);
   }
   else {
     river.addTo(map);
-    backgroundLake.addTo(map);
+    //backgroundLake.addTo(map);
     swamp.addTo(map);
   }
 
