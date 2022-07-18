@@ -15,6 +15,8 @@ var  Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/res
 attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
   }).addTo(map);
 
+var surveyArea = L.geoJSON(zoneAreas, {style: {color:"red", stroke:1, fillOpacity:0}}).addTo(map);
+
 function popUp(f,l) {
   var out = [];
   //adds spaces in between entries
@@ -144,6 +146,11 @@ var marshPattern = new L.Pattern({width:50, height:40, patternTransform: "1,0,0,
             label: "Swamp",
             type: "rectangle",
             fillColor: "#5b975b"
+
+          }, {
+            label: "Survey Area",
+            type: "rectangle",
+            color:"red"
 
           }]
   		})
